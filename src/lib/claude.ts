@@ -14,6 +14,10 @@ export async function callClaude(prompt: string, maxTokens = 4096): Promise<stri
     messages: [{ role: "user", content: prompt }],
   });
 
+  if (message.stop_reason === "max_tokens") {
+    console.error(`Claude response truncated (used all ${maxTokens} tokens)`);
+  }
+
   const content = message.content[0];
   if (content.type !== "text") {
     throw new Error("Unexpected response type from Claude");

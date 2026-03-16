@@ -3,7 +3,9 @@ export function buildAnalysisPrompt(cvText: string, jdText: string): string {
 
 Analyze the following CV against the provided Job Description. Respond ONLY with a raw JSON object. CRITICAL: Do NOT wrap in markdown code fences (\`\`\`). Do NOT add any text before or after the JSON.
 
-For "explanation" and "description" fields: be specific and actionable — list exact skill names, exact keywords, exact issues. No filler phrases like "overall good" or "needs improvement". Every sentence must contain concrete information the user can act on.
+For "explanation" and "description" fields: be specific and actionable. Use compact format like "Matched: X, Y, Z. Missing: A, B, C" instead of full sentences. No filler phrases. Maximum 2-3 short sentences per field.
+
+For "suggestions": limit to top 5 most impactful suggestions only. Each "improvement" field should be 1-2 sentences max.
 
 ## CV Content:
 ${cvText}
@@ -81,7 +83,7 @@ ${jdText}
 - "Job Title Alignment": Does CV job title match or relate to target role title?
 - "Education & Certifications": Required qualifications present?
 
-Only include findings that are relevant. Skip categories where everything is fine (status would be "pass" with nothing notable).
+Only include findings with status "warning" or "fail". Skip all "pass" findings to keep response compact.
 
 ### Suggestions:
 - Order by impact (high first)
