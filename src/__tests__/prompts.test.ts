@@ -47,7 +47,7 @@ describe("buildRewritePrompt", () => {
 
   it("includes rewrite instructions", () => {
     const prompt = buildRewritePrompt(originalText, jdText, suggestionContext);
-    expect(prompt).toContain("Rewrite the following CV section to better match the job description");
+    expect(prompt).toContain("Rewrite the text to maximize both ATS score and recruiter impression");
     expect(prompt).toContain("Return ONLY the rewritten text, no explanations or formatting");
   });
 });

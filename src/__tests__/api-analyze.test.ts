@@ -32,11 +32,12 @@ import { POST } from "../app/api/analyze/route";
 const VALID_RESULT = {
   overallScore: 75,
   subScores: [
-    { name: "Keyword Match", score: 80, explanation: "Good keyword coverage" },
-    { name: "Skills Alignment", score: 70, explanation: "Most skills match" },
+    { name: "Hard Skills Match", score: 80, explanation: "Good hard skills coverage" },
+    { name: "Soft Skills Match", score: 70, explanation: "Most soft skills present" },
     { name: "Experience Relevance", score: 75, explanation: "Relevant experience" },
-    { name: "Format & Structure", score: 65, explanation: "Needs improvement" },
+    { name: "Keyword Optimization", score: 72, explanation: "Good keyword density" },
     { name: "Impact & Metrics", score: 85, explanation: "Good use of metrics" },
+    { name: "Format & ATS Compatibility", score: 65, explanation: "Needs improvement" },
   ],
   atsFindings: [
     { category: "Keyword Density", status: "pass", description: "Good keyword match" },
@@ -121,7 +122,7 @@ describe("POST /api/analyze", () => {
 
     expect(res.status).toBe(200);
     expect(body.overallScore).toBe(75);
-    expect(body.subScores).toHaveLength(5);
+    expect(body.subScores).toHaveLength(6);
     expect(body.atsFindings).toHaveLength(1);
     expect(body.suggestions).toHaveLength(1);
     expect(mockCallClaude).toHaveBeenCalledOnce();
