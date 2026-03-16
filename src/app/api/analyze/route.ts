@@ -55,7 +55,7 @@ function isValidAnalysisResult(obj: unknown): obj is AnalysisResult {
 
 async function analyzeWithRetry(prompt: string): Promise<AnalysisResult> {
   return withRetry(async () => {
-    const text = await callClaude(prompt, 4096);
+    const text = await callClaude(prompt, 16384);
 
     // Strip markdown code fences if Claude wraps the JSON
     let cleaned = text.trim();
