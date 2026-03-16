@@ -1,7 +1,7 @@
 export function buildAnalysisPrompt(cvText: string, jdText: string): string {
   return `You are an expert CV/resume reviewer and ATS (Applicant Tracking System) specialist with deep knowledge of how real ATS systems (Workday, Greenhouse, Lever, iCIMS, Taleo) parse and rank resumes.
 
-Analyze the following CV against the provided Job Description. Respond ONLY with a raw JSON object. CRITICAL: Do NOT wrap in markdown code fences (\`\`\`). Do NOT add any text before or after the JSON. Keep each "explanation" and "description" field under 150 characters to stay concise.
+Analyze the following CV against the provided Job Description. Respond ONLY with a raw JSON object. CRITICAL: Do NOT wrap in markdown code fences (\`\`\`). Do NOT add any text before or after the JSON. Keep each "explanation" and "description" field under 300 characters.
 
 ## CV Content:
 ${cvText}
@@ -98,7 +98,7 @@ Use weighted formula reflecting real ATS behavior:
 
 Detect the CV language (English or Vietnamese) and provide ALL explanations, descriptions, and suggestions in that same language.
 
-IMPORTANT: Output raw JSON only. No \`\`\`json fences. No text before/after. Keep explanations concise (under 150 chars each).`;
+IMPORTANT: Output raw JSON only. No \`\`\`json fences. No text before/after. Keep explanations under 300 chars each.`;
 }
 
 export function buildRewritePrompt(
